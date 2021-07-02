@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <form class="row g-3" id="myform">
+        <div class="col-md-3">
+          <label for="inputfname" class="form-label">First Name</label>
+          <input type="text" class="form-control" id="inputfname" placeholder="First Name" required>
+        </div>
+        <div class="col-md-3">
+          <label for="inputlname" class="form-label">Last Name</label>
+          <input type="text" class="form-control" id="inputlname" placeholder="Last Name" required>
+        </div>
+        <div class="col-md-7">
+          <label for="inputAddress" class="form-label">Address</label>
+          <input type="text" class="form-control" id="inputAddress" placeholder="Block No, St" required>
+        </div>
+        <div class="col-md-7">
+          <label for="inputAddress2" class="form-label">Address 2</label>
+          <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment or floor" required>
+        </div>
+        <div class="col-md-2" style="padding-bottom: 2%;">
+          <label for="inputpincode" class="form-label">Pincode</label>
+          <input type="text" class="form-control" id="inputpincode" required>
+        </div>
+        <div class="col-md-4">
+            <label for="gender" class="form-label">Gender</label></br>
+            <label for="inputAddress2" class="form-label">Male</label>
+            <input type="radio" value="Male" name='gender' id="male"></br>
+            <label for="inputAddress2" class="form-label">Female</label>
+            <input type="radio" value="Female" name='gender' id="female"></br>
+        </div>
+        <div class="col-md-7">
+            <label for="inputAddress2" class="form-label">Choice of Food</label></br>
+            <label for="inputAddress2" class="form-label">Veg-Meal</label>
+            <input type="checkbox" value="Veg-Meal" name='food' id="vm"></br>
+            <label for="inputAddress2" class="form-label">Non Veg-Meal</label>
+            <input type="checkbox" value=" Non Veg-Meal" name='food' id="nm"></br>
+            <label for="inputAddress2" class="form-label">Pizza</label>
+            <input type="checkbox" value="Pizza" name='food' id="pz"></br>
+            <label for="inputAddress2" class="form-label">Veg Biryani</label>
+            <input type="checkbox" value="Veg Biryani" name='food' id="vb"></br>
+            <label for="inputAddress2" class="form-label" >Non-Veg Biryani</label>
+            <input type="checkbox" value="Non-Veg Biryani" name='food' id="nb"></br>
+          </div>
+          <div class="col-md-2" style="padding-bottom: 2%;">
+            <label for="inputstate" class="form-label">State</label>
+            <input type="text" class="form-control" id="inputstate" required>
+          </div>
+          <div class="col-md-2" style="padding-bottom: 2%;"> 
+            <label for="inputcon" class="form-label">Country</label>
+            <input type="text" class="form-control" id="inputcon" required>
+          </div>
+
+        <div class="col-12">
+          <input type="submit" class="btn btn-primary" value="Submit">
+        </div>
+      </form>
+    <script>
+          //var form1 = document.getElementById("myform");
+
+          var div1 = document.createElement('div')
+          div1.setAttribute("id","dtab")
+          div1.className = "intab"
+          var table = document.createElement('table');
+          table.setAttribute("id","tab2")
+          table.className="tab1";
+
+          var thead = document.createElement('thead');
+          //thead.className='tdw';s
+          var tr=document.createElement('tr');
+          var th1= createthtd('th','First Name')
+          var th2= createthtd('th','Last Name')
+          var th3= createthtd('th','Address')
+          var th4= createthtd('th','Pincode')
+          var th5= createthtd('th','Gender')
+          var th6= createthtd('th','Food')
+          var th7= createthtd('th','State')
+          var th8= createthtd('th','Country')
+          th1.className="tdw1";
+          th2.className="tdw2";
+          th3.className="tdw3";
+          th4.className="tdw4";
+          th5.className="tdw5";
+          th6.className="tdw6";
+          th7.className="tdw7";
+          th8.className="tdw8";
+          tr.append(th1,th2,th3,th4,th5,th6,th7,th8);
+          thead.append(tr)
+          var tbody = document.createElement('tbody');
+
+        var form1 = document.getElementById("myform");
+        form1.addEventListener('submit',function(event)
+        {
+          var chkm = document.getElementById("male").checked;
+          var chkf = document.getElementById("female").checked;
+          if (!chkm && !chkf)
+          {
+            alert('You need to select the gender option')
+            return;
+          }
+          var opt1 = document.getElementById("vm").checked;
+          var opt2 = document.getElementById("nm").checked;
+          var opt3 = document.getElementById("pz").checked;
+          var opt4 = document.getElementById("vb").checked;
+          var opt5 = document.getElementById("nb").checked;
+          
+          if (!opt1 && !opt2 && !opt3 && !opt4 && !opt5)
+          {
+            alert('You need to select alteast one meal option')
+            return;
+          }
+
+          event.preventDefault();
+          let name = document.getElementById("inputfname").value
+          let ln = document.getElementById("inputlname").value;
+          let address = document.getElementById("inputAddress").value;
+          address = address + " " + document.getElementById("inputAddress2").value;
+          let pincode = document.getElementById("inputpincode").value;
+          let state = document.getElementById("inputstate").value;
+          let coun = document.getElementById("inputcon").value;
+          let ele = document.getElementsByName("gender");
+          let gender
+          for (let i=0;i<ele.length;i++)
+            {
+                if (ele[i].checked)
+                {
+                    gender = ele[i].value
+                }
+            }
+          let ele1 = document.getElementsByName("food");
+          let food =""
+          let f1 
+          console.log(ele1[0].value)
+          for (let j=0;j<ele1.length;j++)
+            {
+                if (ele1[j].checked && !f1 )
+                {
+                    food = ele1[j].value
+                    f1 = true
+                }
+                else if (ele1[j].checked && f1)
+                {
+                   food = food + "," + ele1[j].value
+                }
+            }   
+              f1=false;
+
+          
+          var tr=document.createElement('tr');
+          var td1= createthtd('td',name)
+          var td2= createthtd('td',ln)
+          var td3= createthtd('td',address)
+          var td4= createthtd('td',pincode)
+          var td5= createthtd('td',gender)
+          var td6= createthtd('td',food)
+          var td7= createthtd('td',state)
+          var td8= createthtd('td',coun)
+          td1.className="tdw1";
+          td2.className="tdw2";
+          td3.className="tdw3";
+          td4.className="tdw4";
+          td5.className="tdw5";
+          td6.className="tdw6";
+          td7.className="tdw7";
+          td8.className="tdw8";
+          //td7.className="tdw7";
+          tr.append(td1,td2,td3,td4,td5,td6,td7,td8);
+          tbody.append(tr)
+          table.append(thead,tbody)
+          div1.append(table)
+          document.body.append(div1)
+          
+          document.getElementById("inputfname").value = "";
+          document.getElementById("inputlname").value = "";
+          document.getElementById("inputAddress").value = "";
+          document.getElementById("inputAddress2").value = "";
+          document.getElementById("inputpincode").value = "";
+          document.getElementById("inputstate").value = "";
+          document.getElementById("inputcon").value = "";
+          let ele2 = document.getElementsByName("gender");
+          for (let k=0;k<ele2.length;k++)
+            {
+                ele2[k].checked = false
+            }
+          let ele3 = document.getElementsByName("food");
+          for (let h=0;h<ele3.length;h++)
+            {
+                ele3[h].checked = false
+                    
+            }
+    
+        })
+      function createthtd(ele,value=' ')
+      {
+      var td = document.createElement(ele)
+      td.innerHTML=value
+      return td
+      }
+    </script>
+</body>
+</html>
